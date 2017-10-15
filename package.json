@@ -1,0 +1,30 @@
+{
+  "name": "pwa_agora_cc_merch",
+  "version": "1.0.0",
+  "description": "Merchandiza store for agora code community",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "cors": "*",
+    "body-parser": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agora-code-community/pwa_agora_cc_merch.git"
+  },
+  "keywords": [
+    "merch",
+    "site",
+    "pwa_merch_agora"
+  ],
+  "author": "AgoraCC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agora-code-community/pwa_agora_cc_merch/issues"
+  },
+  "homepage": "https://github.com/agora-code-community/pwa_agora_cc_merch#readme"
+}

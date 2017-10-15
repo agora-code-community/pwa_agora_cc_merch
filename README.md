@@ -1,5 +1,9 @@
 # pwa_agora_cc_merch
 
+<kbd>Database config can be found in the <em>config/databse.js</em> file path. Edit according to your preference.
+	<br> Current database name: <em>agoramerch</em>
+</kbd>
+
 <h1>OVERVIEW</h1>
 This document builds on the earlier technical documentation, it describes the site’s file structure, database schema and associations and tasks. 
 <h2>SPECIFICATIONS</h2>
