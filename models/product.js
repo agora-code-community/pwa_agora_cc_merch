@@ -6,32 +6,32 @@ const config = require('../config/database');
 
 // Product db schema
 const productSchema = mongoose.Schema({
-	name: {
-		type: String,
-		required: true;
-	},
-	description: {
-		type: String,
-		required: true;
-	},
-	details: {
-		color: String,
-		Size: String,
-		weight: String
-	},
-	quantity:{   // available stock
-		type: String,
-		required: true;
-	}, 
-	price: {
-		type: Number,
-		required: true
-	},
-	category: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Category'
-	},
-	created_at: {
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    details: {
+        color: String,
+        Size: String,
+        weight: String
+    },
+    quantity: { // available stock
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
+    category: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category'
+    },
+    created_at: {
         type: String,
         default: Date.now
     }

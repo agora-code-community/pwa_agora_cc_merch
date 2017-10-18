@@ -6,15 +6,15 @@ const config = require('../config/database');
 
 // Product db schema
 const categorySchema = mongoose.Schema({
-	name: {
-		type: String,
-		required: true;
-	},
-	description: {
-		type: String,
-		required: true;
-	},
-	created_at: {
+    name: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    created_at: {
         type: String,
         default: Date.now
     }
