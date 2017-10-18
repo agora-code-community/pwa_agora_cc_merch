@@ -37,3 +37,7 @@ Pricing,
  delivery address, 
 receiver details/contacts. 
 Note: this schema is liable to change as project goes on. Suggestions and modifications are welcome
+
+
+CAROUSAL DOCS
+All carousal information can be found at https://www.npmjs.com/package/ngx-carousel
