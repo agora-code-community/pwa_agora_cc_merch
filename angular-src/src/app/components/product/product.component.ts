@@ -17,8 +17,7 @@ export class ProductComponent implements OnInit {
     ngOnInit() {
       //Initialise the component with parameters received from the route
      this.sub = this.route.params.subscribe(params => {
-        this.sub = +params['apparel'];
-        console.log(this.sub);
+        this.type = params['type'];
       });
     }
   
