@@ -20,9 +20,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { NgxCarouselModule } from 'ngx-carousel';
 import 'hammerjs';
 import { FooterComponent } from './components/footer/footer.component';
+import { ProductComponent } from './components/product/product.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'product/:type', component: HomeComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     ProfileComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
