@@ -17,6 +17,9 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service';
 import {AuthGuard} from './guards/auth.guard';
 import { HeaderComponent } from './components/header/header.component';
+import { NgxCarouselModule } from 'ngx-carousel';
+import 'hammerjs';
+import { FooterComponent } from './components/footer/footer.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
@@ -35,14 +38,16 @@ const appRoutes: Routes = [
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
     HttpModule,
-    FlashMessagesModule
+    FlashMessagesModule,
+    NgxCarouselModule
   ],
   providers: [ValidateService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
