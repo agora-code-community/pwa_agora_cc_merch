@@ -1,0 +1,10 @@
+<div class="jumbotron text-center">
+  <h1>Professional Insurance</h1>
+  <p class="lead">
+    Welcome to our Insurance Website application built from scratch
+  </p>
+  <div>
+      <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/login']">Login</a></li>
+      <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/register']">Register</a></li>
+  </div>
+</div>

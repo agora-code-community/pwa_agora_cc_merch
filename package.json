@@ -1,35 +1,47 @@
 {
-    "name": "pwa_agora_cc_merch",
-    "version": "1.0.0",
-    "description": "Merchandiza store for agora code community",
-    "main": "app.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node app"
-    },
-    "dependencies": {
-        "express": "*",
-        "mongoose": "*",
-        "cors": "*",
-        "body-parser": "*",
-        "bcryptjs": "*",
-        "jsonwebtoken": "*",
-        "passport": "*",
-        "passport-jwt": "*"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/agora-code-community/pwa_agora_cc_merch.git"
-    },
-    "keywords": [
-        "merch",
-        "site",
-        "pwa_merch_agora"
-    ],
-    "author": "AgoraCC",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/agora-code-community/pwa_agora_cc_merch/issues"
-    },
-    "homepage": "https://github.com/agora-code-community/pwa_agora_cc_merch#readme"
+  "name": "pwa_agora_cc_merch",
+  "version": "1.0.0",
+  "description": "Merchandiza store for agora code community",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "@angular/animations": "^4.4.5",
+    "@angular/common": "^4.4.5",
+    "@angular/compiler": "^4.4.5",
+    "@angular/compiler-cli": "^4.4.5",
+    "@angular/core": "^4.4.5",
+    "@angular/forms": "^4.4.5",
+    "@angular/http": "^4.4.5",
+    "@angular/platform-browser": "^4.4.5",
+    "@angular/platform-browser-dynamic": "^4.4.5",
+    "@angular/platform-server": "^4.4.5",
+    "@angular/router": "^4.4.5",
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*",
+    "typescript": "^2.5.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agora-code-community/pwa_agora_cc_merch.git"
+  },
+  "keywords": [
+    "merch",
+    "site",
+    "pwa_merch_agora"
+  ],
+  "author": "AgoraCC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agora-code-community/pwa_agora_cc_merch/issues"
+  },
+  "homepage": "https://github.com/agora-code-community/pwa_agora_cc_merch#readme"
 }
