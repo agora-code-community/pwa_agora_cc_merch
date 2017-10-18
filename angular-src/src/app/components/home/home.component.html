@@ -1,10 +1,57 @@
-<div class="jumbotron text-center">
-  <h1>Professional Insurance</h1>
-  <p class="lead">
-    Welcome to our Insurance Website application built from scratch
-  </p>
-  <div>
-      <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/login']">Login</a></li>
-      <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a [routerLink]="['/register']">Register</a></li>
-  </div>
+<div class="row">
+    <div>
+        <div class="block customhero">
+            <a class="">
+                <img src="assets/img/header/merch_line.png">
+            </a>
+        </div>
+    </div>
 </div>
+<div class="row">
+  <ngx-carousel
+    [inputs]="carouselTile"
+    (carouselLoad)="carouselTileLoad($event)">
+
+    <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
+      <h1>{{Tile + 1}}</h1>
+      <h4>{{Tile + 1}}</h4>
+      <label><h6>ZMW {{Tile + 1}}</h6></label>
+    </ngx-tile>
+
+    <button NgxCarouselPrev class='leftRs'>&lt;</button>
+    <button NgxCarouselNext class='rightRs'>&gt;</button>
+  </ngx-carousel>
+</div>
+<div class="row">
+    <div>
+        <div class="block customhero">
+            <a class="">
+                <img src="assets/img/header/merch_line2.png">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <ngx-carousel
+      [inputs]="carouselTile"
+      (carouselLoad)="carouselTileLoad($event)">
+  
+      <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
+        <h1>{{Tile + 1}}</h1>
+        <h4>{{Tile + 1}}</h4>
+        <label><h6>ZMW {{Tile + 1}}</h6></label>
+      </ngx-tile>
+  
+      <button NgxCarouselPrev class='leftRs'>&lt;</button>
+      <button NgxCarouselNext class='rightRs'>&gt;</button>
+    </ngx-carousel>
+  </div>
+  <div class="row">
+      <div>
+          <div class="block customhero">
+              <a class="">
+                  <img src="assets/img/header/merch_line end.png">
+              </a>
+          </div>
+      </div>
+  </div>
