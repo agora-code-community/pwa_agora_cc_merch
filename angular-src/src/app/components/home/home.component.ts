@@ -10,8 +10,10 @@ import { NgxCarousel } from 'ngx-carousel';
 })
 export class HomeComponent implements OnInit {
 
-
+  //Array to hold carousel items
   public carouselTileItems: Array<any>;
+
+  //carousel
   public carouselTile: NgxCarousel;
 
 
@@ -22,8 +24,10 @@ export class HomeComponent implements OnInit {
 
 
   ngOnInit() {
+    //Initialise the array with this many items
     this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     
+    //Carousel properties
        this.carouselTile = {
          grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
          slide: 2,
@@ -38,6 +42,7 @@ export class HomeComponent implements OnInit {
        }
   }
 
+  //Pushes more items into the carousel when user clicks the arrow at the end of the slider cycle
   public carouselTileLoad(evt: any) {
     
     const len = this.carouselTileItems.length
