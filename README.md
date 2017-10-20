@@ -1,7 +1,8 @@
 # pwa_agora_cc_merch
 
-<h1>OVERVIEW</h1>
-This document builds on the earlier technical documentation, it describes the site’s file structure, database schema and associations and tasks. 
+<h1>INITIALIZATION</h1>
+So this is just the project boiler-plate and is our stating point. 
+Once you push the project, run the command <kbd>npm install</kbd> in the project directory. That will install all the current project dependencies. Scan through and lets get coding.
 <h2>SPECIFICATIONS</h2>
 Most MEAN stack application are broken down into two major parts - the application API (Server side code, Express and node.js) and the applications frontend (PWA site). This is the easiest model as such is proposed to be followed.
 API - this houses the applications server side code that interacts with the database. The API will provide the PWA site with services to help accomplish the required functionality
