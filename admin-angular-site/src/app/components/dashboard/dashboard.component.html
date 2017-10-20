@@ -1,0 +1,54 @@
+<!-- Dashboard component html -->
+
+<div class="container">
+
+  <div class="row">
+    <h3>Agora store <small>Admin panel</small></h3>
+    <div class="col-md-12">
+      <!-- plug-in for the search-bar conponent -->
+      <app-search-bar></app-search-bar>
+    </div>
+  </div>
+
+  <h3 *ngIf="!products">There are no products to show, please add some by clicking the "Add new product" button above.</h3>
+
+  <!-- if products exists in the db, table shows otherwise it wont -->
+  <div *ngIf="products" class="row">
+    <div class="col-md-12">  
+      <div class="panel panel-default">
+        <div class="panel-heading">Product overview</div>
+        <div class="panel-body">
+          <table class="table table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>Product ID</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of products">
+                <td>1</td>
+                <td> 
+                  <a routerLink="/product-details/{{product._id}}">{{product.name}} </a>
+                </td>
+                <td>Column content</td>
+                <td>
+                    <a routerLink="/product/edit/{{product._id}}" class="btn btn-default">
+                      <i class="fa fa-pencil"></i>
+                    </a> |
+                    <a class="btn btn-link btn-danger" (click)="delete(product._id)">
+                      <i class="fa fa-times"></i>
+                    </a>
+                </td>
+              </tr>
+            </tbody>
+          </table> 
+
+        </div>
+      </div>
+    </div> <!-- ./col -->
+    
+  </div>
+</div> <!-- ./container -->

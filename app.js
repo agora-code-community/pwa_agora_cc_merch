@@ -25,11 +25,21 @@ const app = express();
 // default port variable
 const port = 3000;
 
+// Route files
+const categories = require('./routes/categoryRoutes');
+const products = require('./routes/productRoutes');
+const orders = require('./routes/orderRoutes');
+
 // CORS middleware
 app.use(cors());
 
 // bodyParser middleware
 app.use(bodyParser.json());
+
+// route paths
+app.use('/api/categories', categories);
+app.use('/api/products', products);
+app.use('/api/orders', orders);
 
 // handles listening to the specified port and starts server
 app.listen(port, () => {

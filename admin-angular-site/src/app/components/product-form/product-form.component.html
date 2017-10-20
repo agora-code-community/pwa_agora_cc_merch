@@ -1,0 +1,71 @@
+
+<div class="container">
+  <div class="row">
+
+    <h3>Add a product</h3>
+
+    <div class="col-md-12">
+      <div class="panel panel-primary">
+        <div class="panel-heading">Product details form</div>
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <fieldset>
+              <div class="form-group">
+                <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Product Name</label>
+                <div class="col-md-8 col-lg-10">
+                  <input type="text" name="name" class="form-control" id="prodName" placeholder="Name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputPassword" class="control-labelcol-md-4 col-lg-2">Product description</label>
+                <div class="col-md-8 col-lg-10">
+                  <textarea class="form-control" rows="5" name="description"></textarea>
+                </div>
+              </div>
+              <p><u>Product details</u></p>
+              <!-- should be able to add multiple -->
+              <div class="form-group">
+                <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Available colors</label>
+                <div class="col-md-8 col-lg-10">
+                  <input type="text" name="colors" class="form-control" id="prodName" placeholder="Colors">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Available sizes</label>
+                <div class="col-md-8 col-lg-10">
+                  <input type="text" name="sizes" class="form-control" id="prodName" placeholder="sizes">
+                </div>
+              </div>
+
+              <!-- add current directive -->
+              <div class="form-group">
+                <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Price</label>
+                <div class="col-md-8 col-lg-10">
+                  <input type="text" name="price" class="form-control" id="prodName" placeholder="k 0.00">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Product category</label>
+                <div class="col-md-8 col-lg-10">
+                  <select name="category" class="form-control">
+                    <option>Show categories from db</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" style="text-align: center">
+                <button type="submit" class="btn btn-success" value="Submit">Create Product</button>
+                <a routerLink="/dashboard" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back</a>
+              </div>
+            </fieldset>  
+          </form>
+        </div>
+      
+      </div><!-- ./panel -->
+    </div><!-- ./col -->
+    
+  </div> <!-- ./row -->
+</div>
