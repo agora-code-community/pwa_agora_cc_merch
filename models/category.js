@@ -20,9 +20,6 @@ const categorySchema = mongoose.Schema({
     }
 });
 
-// enable the user to be used in external functions
-const Category = module.exports = mongoose.model('Category', categorySchema);
-
 /** 
  * Get category by it's id
  * @param id is the category's unique id
