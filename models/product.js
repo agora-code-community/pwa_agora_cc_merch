@@ -20,8 +20,7 @@ const productSchema = mongoose.Schema({
         weight: String
     },
     quantity: { // available stock
-        type: String,
-        required: true
+        type: String
     },
     price: {
         type: Number,
@@ -34,8 +33,16 @@ const productSchema = mongoose.Schema({
     created_at: {
         type: String,
         default: Date.now
+    },
+    imagePath: {
+        type: String,
+        required:true
     }
 });
 
 // enable the user to be used in external functions
 const Product = module.exports = mongoose.model('Product', productSchema);
+
+module.exports.addProduct = function(newProduct, callback) {
+            newProduct.save(callback);
+}
