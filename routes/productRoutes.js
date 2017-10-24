@@ -5,8 +5,42 @@
 
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
 
 const Product = require('../models/product');
+
+// setting storage engine for multer
+const storage = multer.diskStorage({
+    destination: './public/uploads',
+    filename: function(req, file, callback) {
+        // renames file to filename-timestamp.extension
+        callback(null, file.filename + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+// initializing upload
+const upload = multer({
+    storage: storage,
+    limits: {fileSize: 5000000}, // 5MB fileSize limit
+    fileFilter: function(req, file, callback) {
+        checkFileType(file, callback);
+    }
+}).array('pictures[]', 2);
+
+function checkFileType(file, callback) {
+    // allowed extensions
+    const filetypes = /jpeg|jpg|png/;
+    // Check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // check mime
+    const mimetype = filetypes.test(file.mimetype);
+
+    if(mimetype && extname) {
+        return callback(null, true);
+    } else {
+        callback('Error: Images only');
+    }
+}
 
 // get all products
 router.get('/', (req, res) => {
@@ -46,15 +80,28 @@ router.get('/:product_id', (req, res, next) => {
 // create product  route (stores data in db)
 router.post('/create', (req, res, next) => {
     const product = req.body; // gets data sent to this URL
-    
-    Product.createProduct(product, (err, cv) => {
-        // check for errors
-        if (err) {
-            res.json({success: false, msg: 'Failed to create product, please try again.'});
+    const pictures = req.files;
+
+    console.log(product);
+
+    upload(req, res, next, (err) => {
+        if(err) { 
+            res.send(err);
         } else {
-            res.json({success: true, msg: 'Product successfully added'});
+            console.log(pictures);
+            res.send('Uploaded');
         }
     });
+
+    
+    // Product.createProduct(product, (err, cv) => {
+    //     // check for errors
+    //     if (err) {
+    //         res.json({success: false, msg: 'Failed to create product, please try again.'});
+    //     } else {
+    //         res.json({success: true, msg: 'Product successfully added'});
+    //     }
+    // });
 });
 
 // Update a particular product
@@ -82,7 +129,7 @@ router.delete('/delete/:product_id', (req, res) => {
             res.send(err);
         }
         // returned if success
-        res.json({success: true, msg: 'A Product has been deleted successfully'});
+        res.json({success: true, msg: 'The Product has been deleted successfully'});
     });
 });
 

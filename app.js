@@ -6,6 +6,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const multer = require('multer');
 
 // Connect to database
 mongoose.Promise = global.Promise;

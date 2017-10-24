@@ -1,0 +1,23 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- for categories -->
+      <div *ngIf="category">
+        <h2>Category Details - <small>{{category.name}}</small></h2>
+        <p>Category Name: {{category.name}}</p>
+        <p>{{category.description}}</p>
+      </div>
+
+      <!-- for products -->
+      <div *ngIf="product">
+          <h2>Product Details - <small>{{product.name}}</small></h2>
+          <p><strong>Product Name:</strong> {{product.name}} <br>
+            {{product.price}}
+          </p>
+          <p>{{product.category}}</p>
+          <p>{{product.description}}</p>
+        </div>
+    </div>
+  </div>
+</div>

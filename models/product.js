@@ -8,23 +8,14 @@ const config = require('../config/database');
 const productSchema = mongoose.Schema({
 	name: {
 		type: String,
-		required: true,
+		required: true
 	},
 	description: {
 		type: String,
-		required: true,
+		required: true
 	},
-	details: {
-		colors: [{type: String}],  // is an arrat to contain multiple colors
-		sizes: [{type: String}]  // is an arrat to contain multiple sizes
-		// weight: String
-	},
-	// quantity:{   // available stock
-	// 	type: String,
-	// 	required: true,
-	// }, 
 	price: {
-		type: String,
+		type: Number,
 		required: true
 	},
 	category: {
@@ -35,6 +26,15 @@ const productSchema = mongoose.Schema({
         type: String,
         default: Date.now
     }
+	// details: {
+	// 	color: String,  // is an arrat to contain multiple colors
+	// 	size: String // is an arrat to contain multiple sizes
+	// 	// weight: String
+	// },
+	// quantity:{   // available stock
+	// 	type: String,
+	// 	required: true,
+	// }, 
 });
 
 // enable the user to be used in external functions
@@ -75,16 +75,13 @@ module.exports.createProduct = (data, callback) => {
 	let add = {
 		name: data.name,
 		description: data.description,
-		details: {
-			colors: [data.color],
-			sizes: [data.size]
-			// weight: data.weight
-		},
-		//quantity:data.quantity, 
 		price: data.price,
-		category: data.category
+		category: data.category,
+		// details: {
+		// 	color: data.color,
+		// 	size: data.size
+		// }
 	};
-	console.log(typeof add.details.colors);
 	// saves to the db
 	Product.create(add, callback);
 };
@@ -101,15 +98,15 @@ module.exports.updateProduct = (product_id, data, options, callback) => {
 	let update = {
 		name: data.name,
 		description: data.description,
-		details: {
-			colors: [data.color],
-			sizes: [data.size]
-			// weight: data.weight
-		},
-		//quantity:data.quantity, 
 		price: data.price,
 		category: data.category
-	};	
+		// details: {
+		// 	color: data.color,
+		// 	size: data.size
+		// 	// weight: data.weight
+		// },
+		//quantity:data.quantity, 
+	};
 	// finds the product with id=product_id and updates it
 	Product.findOneAndUpdate(query, update, options, callback);
 };

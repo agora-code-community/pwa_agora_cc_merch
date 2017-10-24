@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // services
 import { ProductService } from './services/product.service';
@@ -17,14 +18,22 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { EditProductComponent } from './components/edit-product/edit-product.component';
+import { EditCategoryComponent } from './components/edit-category/edit-category.component';
+import { DetailsComponent } from './components/details/details.component';
 
 // these specify the apps forntend routes
 const appRoutes: Routes = [
-  {path:'', component: LoginComponent},
-  {path:'dashboard', component:DashboardComponent},
-  {path:'orders', component: OrdersComponent},
-  {path:'product', component: ProductFormComponent},
-  {path:'category', component: CategoryFormComponent}
+  {path: '', component: LoginComponent},
+  {path: 'dashboard', component:DashboardComponent},
+  {path: 'orders', component: OrdersComponent},
+  {path: 'categories', component: CategoriesComponent},
+  {path: 'product', component: ProductFormComponent},
+  {path: 'add-category', component: CategoryFormComponent},
+  {path: 'product/edit/:id', component: EditProductComponent},
+  {path: 'category/edit/:id', component: EditCategoryComponent},
+  {path: 'product-details/:id', component: DetailsComponent},
+  {path: 'category-details/:id', component: DetailsComponent}
 ];
 
 @NgModule({
@@ -37,13 +46,17 @@ const appRoutes: Routes = [
     ProductFormComponent,
     CategoryFormComponent,
     SearchBarComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    EditProductComponent,
+    EditCategoryComponent,
+    DetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FlashMessagesModule
   ],
   providers: [ProductService, CategoryService],
   bootstrap: [AppComponent]

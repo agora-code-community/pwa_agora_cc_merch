@@ -2,29 +2,29 @@
 <div class="container">
   <div class="row">
 
-    <h3>Add a product</h3>
+    <h3>Add a new product</h3>
 
     <div class="col-md-12">
       <div class="panel panel-primary">
         <div class="panel-heading">Product details form</div>
         <div class="panel-body">
-          <form class="form-horizontal">
+          <form class="form-horizontal" (ngSubmit)="onSubmit(prodForm.value)" #prodForm="ngForm" enctype="multipart/form-data">
             <fieldset>
               <div class="form-group">
-                <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Product Name</label>
+                <label for="inputEmail" class="control-label col-md-4 col-lg-2">Product Name</label>
                 <div class="col-md-8 col-lg-10">
-                  <input type="text" name="name" class="form-control" id="prodName" placeholder="Name">
+                  <input type="text" name="name" [(ngModel)]="name" class="form-control input-sm" id="prodName" placeholder="Name">
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputPassword" class="control-labelcol-md-4 col-lg-2">Product description</label>
+                <label for="inputPassword" class="control-label col-md-4 col-lg-2">Product description</label>
                 <div class="col-md-8 col-lg-10">
-                  <textarea class="form-control" rows="5" name="description"></textarea>
+                  <textarea class="form-control input-sm" rows="5" name="description" [(ngModel)]="description"></textarea>
                 </div>
               </div>
-              <p><u>Product details</u></p>
-              <!-- should be able to add multiple -->
+              <!-- <p><u>Product details</u></p>
+              <!-- should be able to add multiple 
               <div class="form-group">
                 <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Available colors</label>
                 <div class="col-md-8 col-lg-10">
@@ -37,26 +37,39 @@
                 <div class="col-md-8 col-lg-10">
                   <input type="text" name="sizes" class="form-control" id="prodName" placeholder="sizes">
                 </div>
-              </div>
+              </div> -->
 
               <!-- add current directive -->
               <div class="form-group">
-                <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Price</label>
+                <label for="price" class="control-label col-md-4 col-lg-2">Price</label>
                 <div class="col-md-8 col-lg-10">
-                  <input type="text" name="price" class="form-control" id="prodName" placeholder="k 0.00">
+                  <div class="input-group">
+                    <span class="input-group-addon">ZMW</span>
+                    <input type="number" name="price" [(ngModel)]="price" class="form-control input-sm" id="price" required>
+                  </div>
                 </div>
               </div>
 
               <div class="form-group">
-                <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Product category</label>
+                <label for="inputEmail" class="control-label col-md-4 col-lg-2">Product category</label>
                 <div class="col-md-8 col-lg-10">
-                  <select name="category" class="form-control">
-                    <option>Show categories from db</option>
+                  <p *ngIf="!categories">
+                    There aint any categories yet, please add some <a routerLink="/category">here</a>
+                  </p>
+                  <select *ngIf="categories" name="category" [(ngModel)]="category" class="form-control input-sm" required>
+                    <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
                   </select>
                 </div>
               </div>
 
-              <div class="form-group" style="text-align: center">
+              <div class="form-group">
+                  <label for="pics" class="control-label col-md-4 col-lg-2">Product images</label>
+                  <div class="col-md-8 col-lg-10">
+                    <input type="file" name="pictures" (change)="fileChangeEvent($event)" id="pics" multiple>
+                  </div>
+                </div>
+
+              <div class="form-group buttons">
                 <button type="submit" class="btn btn-success" value="Submit">Create Product</button>
                 <a routerLink="/dashboard" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back</a>
               </div>

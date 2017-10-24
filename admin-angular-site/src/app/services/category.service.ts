@@ -43,7 +43,7 @@ export class CategoryService {
    * @param data The data of the posted form
    */
   updateCategory(id, data) {
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
     return this.http.put('http://localhost:3000/api/categories/update/' + id, data, {headers: headers})
@@ -55,7 +55,7 @@ export class CategoryService {
    * @param id The id of the category to be deleted
    */
   deleteCategory(id) {
-    return this.http.delete('http://localhost:3000/api/category/delete/' + id)
+    return this.http.delete('http://localhost:3000/api/categories/delete/' + id)
       .map(res => res.json());
   }
 
