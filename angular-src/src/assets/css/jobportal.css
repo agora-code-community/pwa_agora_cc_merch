@@ -1,0 +1,128 @@
+/* css for the jobs page
+ *css for a banner I just added on the jobs page
+ */
+#side-search {
+    padding: 40px 0;
+}
+.banner {
+    padding: 170px 0;
+    color: #f8f8f8;
+    background: url(../images/banner-bg.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.banner h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 6em;
+}
+
+/*
+ * For banner2
+ */
+.banner2 {
+    padding: 100px 0;
+    color: #f8f8f8;
+    background: url(../images/banner.jpg) no-repeat center center;
+    background-size: cover;
+}
+
+.banner2 h2 {
+    margin: 0;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+    font-size: 4em;
+}
+
+
+.banner ul {
+    margin-bottom: 0;
+}
+
+.banner-social-buttons {
+    float: right;
+    margin-top: 0;
+}
+
+@media(max-width:1199px) {
+    ul.banner-social-buttons {
+        float: left;
+        margin-top: 15px;
+    }
+}
+
+@media(max-width:767px) {
+    .banner h2 {
+        margin: 0;
+        text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+        font-size: 3em;
+    }
+
+    ul.banner-social-buttons > li {
+        display: block;
+        margin-bottom: 20px;
+        padding: 0;
+    }
+
+    ul.banner-social-buttons > li:last-child {
+        margin-bottom: 0;
+    }
+}
+/* banner css end*/
+
+/*Custom banner css inheriting from hero area in main css*/
+.animated .logo-2 {
+    display: block!important;
+}
+.logo-2 {
+    display: none!important;
+}
+.animated .logo-1 {
+    display: none!important;
+}
+
+#banner .block {
+}
+#banner .block p {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 30px;
+}
+
+#banner .block .counter {
+    background: rgba(255, 255, 255, 0.2);
+    padding:18px;
+}
+
+#banner .block .counter h2 {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    padding-bottom: 19px;
+    text-align: center;
+}
+#banner .block .counter ul li {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    display: inline-block;
+    line-height: 25px;
+    padding: 25px 28px 20px;
+    text-align: center;
+    width: 49%;
+    margin-bottom: 3px;
+}
+#banner .block .counter ul li span {
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+}
+#banner .block .counter ul li .digit {
+    display: inline-block;
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 50px;
+    position: relative;
+    overflow: hidden;
+    height: 60px;
+}

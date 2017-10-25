@@ -28,6 +28,7 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const users = require('./routes/users');
+const products = require('./routes/productRoutes');
 
 // default port variable
 const port = 3000;
@@ -48,6 +49,8 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/users', users);
+
+app.use('/product', products);
 
 // Index Route
 app.get('/', (req, res) => {
