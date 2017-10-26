@@ -6,6 +6,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const path = require('path');
 
 const Product = require('../models/product');
 
@@ -14,7 +15,7 @@ const storage = multer.diskStorage({
     destination: './public/uploads',
     filename: function(req, file, callback) {
         // renames file to filename-timestamp.extension
-        callback(null, file.filename + '-' + Date.now() + path.extname(file.originalname));
+        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
@@ -25,7 +26,7 @@ const upload = multer({
     fileFilter: function(req, file, callback) {
         checkFileType(file, callback);
     }
-}).array('pictures[]', 2);
+});
 
 function checkFileType(file, callback) {
     // allowed extensions
@@ -78,20 +79,23 @@ router.get('/:product_id', (req, res, next) => {
 });
 
 // create product  route (stores data in db)
-router.post('/create', (req, res, next) => {
+router.post('/create', upload.array('pictures[]', 5), (req, res, next) => {
     const product = req.body; // gets data sent to this URL
     const pictures = req.files;
 
-    console.log(product);
-
-    upload(req, res, next, (err) => {
-        if(err) { 
-            res.send(err);
-        } else {
-            console.log(pictures);
-            res.send('Uploaded');
-        }
-    });
+    
+    // uploads if pictures were sent
+    if(pictures) {
+        upload(req, res, next, (err) => {
+            if (err) {
+                res.send(err);
+            } else {
+                console.log(pictures);
+                
+            }
+        });
+    }
+    
 
     
     // Product.createProduct(product, (err, cv) => {

@@ -4,11 +4,17 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 
+const imagesSchema = mongoose.Schema({
+	image_name: {type: String},
+	imagePath: {type: String}
+})
+
 // Product db schema
 const productSchema = mongoose.Schema({
 	name: {
 		type: String,
-		required: true
+		required: true,
+		index: true
 	},
 	description: {
 		type: String,
@@ -22,6 +28,10 @@ const productSchema = mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Category'
 	},
+	images: [{
+		image_name: String,
+		image_path: String
+	}],
 	created_at: {
         type: String,
         default: Date.now

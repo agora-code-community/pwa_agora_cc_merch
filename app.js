@@ -51,13 +51,13 @@ app.use(bodyParser.json());
 app.use('/api/categories', categories);
 app.use('/api/products', products);
 app.use('/api/orders', orders);
+app.use('/users', users);
+
 //Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 require('./config/passport')(passport);
-
-app.use('/users', users);
 
 // Index Route
 app.get('/', (req, res) => {
