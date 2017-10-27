@@ -6,6 +6,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const multer = require('multer');
 
 // Connect to database
 mongoose.Promise = global.Promise;
@@ -28,10 +29,14 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const users = require('./routes/users');
-const products = require('./routes/productRoutes');
 
 // default port variable
 const port = 3000;
+
+// Route files
+const categories = require('./routes/categoryRoutes');
+const products = require('./routes/productRoutes');
+const orders = require('./routes/orderRoutes');
 
 // CORS middleware
 app.use(cors());
@@ -42,15 +47,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 // bodyParser middleware
 app.use(bodyParser.json());
 
+// route paths
+app.use('/api/categories', categories);
+app.use('/api/products', products);
+app.use('/api/orders', orders);
+app.use('/users', users);
+
 //Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 require('./config/passport')(passport);
-
-app.use('/users', users);
-
-app.use('/product', products);
 
 // Index Route
 app.get('/', (req, res) => {
