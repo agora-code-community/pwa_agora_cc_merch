@@ -24,10 +24,11 @@
         "@angular/platform-browser-dynamic": "*",
         "@angular/router": "^4.2.4",
         "angular2-flash-messages": "^1.0.8",
+        "angular2-jwt": "^0.2.3",
         "core-js": "^2.4.1",
         "hammerjs": "*",
-        "ngx-carousel": "^1.2.5",
         "ng2-bootstrap-modal": "^1.0.1",
+        "ngx-carousel": "^1.2.5",
         "rxjs": "^5.4.2",
         "zone.js": "^0.8.14"
     },
