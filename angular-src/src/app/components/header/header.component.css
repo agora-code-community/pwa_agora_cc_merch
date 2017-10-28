@@ -1,0 +1,13 @@
+.bg {
+    background: url('../../assets/header.png');
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header {
+    height: 200px;
+    margin-top: 0px;
+}

@@ -1,0 +1,42 @@
+
+<div class="container">
+    <div class="row">
+  
+      <h3>Add a new Category</h3>
+  
+      <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Categery details form</div>
+          <div class="panel-body">
+            <p>Fill in the form accordingly. 
+              <strong>Note:</strong> All fields a required.
+            </p>
+            <form class="form-horizontal" (ngSubmit)="onFormSubmit(catForm.value)" #catForm="ngForm">
+              <fieldset>
+                <div class="form-group">
+                  <label for="inputEmail" class="control-labelcol-md-4 col-lg-2">Category Name</label>
+                  <div class="col-md-8 col-lg-10">
+                    <input type="text" name="name" [(ngModel)]="name" class="form-control" id="prodName" placeholder="Name" required>
+                  </div>
+                </div>
+  
+                <div class="form-group">
+                  <label for="inputPassword" class="control-labelcol-md-4 col-lg-2">Category description</label>
+                  <div class="col-md-8 col-lg-10">
+                    <textarea class="form-control" rows="5" name="description" [(ngModel)]="description" required></textarea>
+                  </div>
+                </div>
+
+                <div class="form-group" style="text-align: center">
+                  <button type="submit" class="btn btn-success" value="Submit">Create Category</button>
+                  <a routerLink="/dashboard" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back</a>
+                </div>
+              </fieldset>  
+            </form>
+          </div>
+        
+        </div><!-- ./panel -->
+      </div><!-- ./col -->
+      
+    </div> <!-- ./row -->
+  </div>
