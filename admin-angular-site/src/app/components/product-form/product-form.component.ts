@@ -1,5 +1,6 @@
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CategoryService } from './../../services/category.service';
 import { ProductModel } from './../../models/productModel';
@@ -25,7 +26,8 @@ export class ProductFormComponent implements OnInit {
   constructor(
     private catService: CategoryService,
     private productService: ProductService,
-    private flashMessage: FlashMessagesService
+    private flashMessage: FlashMessagesService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -67,14 +69,20 @@ export class ProductFormComponent implements OnInit {
       }
 
       // send the data to the backend
-      this.productService.saveProduct(formData).subscribe(deta => {
-        console.log(deta);
+      this.productService.saveProduct(formData).subscribe(data => {
+        if(data.success) {
+          this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+          // re-route to dashboard
+          this.router.navigateByUrl('/dashboard');
+        } else {
+          this.flashMessage.show(data.msg, {cssClass: 'alert-warning', timeout: 4000});
+        }
       });
-    }
+    } // end if-else
   }
 
   /**
-   * Upon change wwe add the images to the pictures array.
+   * Upon change we add the images to the pictures array.
    * @param fileInput the file input
    */
   fileChangeEvent(fileInput: any) {

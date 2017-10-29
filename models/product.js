@@ -4,11 +4,6 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 
-const imagesSchema = mongoose.Schema({
-	image_name: {type: String},
-	imagePath: {type: String}
-})
-
 // Product db schema
 const productSchema = mongoose.Schema({
 	name: {
@@ -87,10 +82,7 @@ module.exports.createProduct = (data, callback) => {
 		description: data.description,
 		price: data.price,
 		category: data.category,
-		// details: {
-		// 	color: data.color,
-		// 	size: data.size
-		// }
+		images: data.images
 	};
 	// saves to the db
 	Product.create(add, callback);

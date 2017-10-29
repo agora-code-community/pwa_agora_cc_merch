@@ -14,8 +14,8 @@ const Product = require('../models/product');
 const storage = multer.diskStorage({
     destination: './public/uploads',
     filename: function(req, file, callback) {
-        // renames file to filename-timestamp.extension
-        callback(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+        // renames file to randomString-timestamp.ext
+        callback(null, randomFilename() + '-' + Date.now() + path.extname(file.originalname));
     }
 });
 
@@ -28,6 +28,20 @@ const upload = multer({
     }
 });
 
+/**
+ * Creates a random string to use to rename the uploaded files
+ */
+function randomFilename() {
+    let randomStr = Math.random().toString(36).substr(2, 12);
+//    let randomStr =  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+   return randomStr;
+}
+
+/**
+ * Checks the type of file to make sure only images are uploaded
+ * @param {*} file the file being checked
+ * @param {*} callback callback function
+ */
 function checkFileType(file, callback) {
     // allowed extensions
     const filetypes = /jpeg|jpg|png/;
@@ -81,31 +95,29 @@ router.get('/:product_id', (req, res, next) => {
 // create product  route (stores data in db)
 router.post('/create', upload.array('pictures[]', 5), (req, res, next) => {
     const product = req.body; // gets data sent to this URL
-    const pictures = req.files;
+    const pictures = req.files;  // holds the image files
 
-    
     // uploads if pictures were sent
     if(pictures) {
-        upload(req, res, next, (err) => {
-            if (err) {
-                res.send(err);
-            } else {
-                console.log(pictures);
-                
-            }
-        });
-    }
-    
+        let pics = [];
+        // iterate through the pictures to extract name and path to store in db
+        for (let i = 0; i < pictures.length; i++) {
+            pics[i] = { 'image_name': pictures[i].filename, 'image_path': pictures[i].path };
+        }
 
-    
-    // Product.createProduct(product, (err, cv) => {
-    //     // check for errors
-    //     if (err) {
-    //         res.json({success: false, msg: 'Failed to create product, please try again.'});
-    //     } else {
-    //         res.json({success: true, msg: 'Product successfully added'});
-    //     }
-    // });
+        // adding the image details to the product's details
+        product.images = pics;
+    }
+
+    // create a new product and save to db
+    Product.createProduct(product, (err, cv) => {
+        // check for errors
+        if (err) {
+            res.json({success: false, msg: 'Failed to create product, please try again.'});
+        } else {
+            res.json({success: true, msg: 'Product successfully created!'});
+        }
+    });
 });
 
 // Update a particular product

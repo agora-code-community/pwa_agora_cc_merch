@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12">
       <!-- for categories -->
-      <div *ngIf="category">
+      <div class="col-md-10 col-md-offset-1" *ngIf="category">
         <h2>Category Details - <small>{{category.name}}</small></h2>
         <div class="panel panel-default">
           <div class="panel-heading">Details</div>
@@ -22,7 +22,7 @@
       </div> <!-- ./panel -->
 
       <!-- for products -->
-      <div *ngIf="product">
+      <div class="col-md-10 col-md-offset-1" *ngIf="product">
         <h2>Product Details -
           <small>{{product.name}}</small>
         </h2>
@@ -34,8 +34,14 @@
             <ul>
               <p><strong>Name:</strong> {{product.name}} </p>
               <p><strong>Category:</strong> {{product.category}}</p>
-              <p><strong>Price:</strong> {{product.price}}</p>
+              <p><strong>Price:</strong> {{ product.price | currency: 'ZMW'}}</p>
               <p><strong>Description:</strong> {{product.description}}</p>
+              
+                <strong>Images:</strong> 
+                <ul *ngFor="let img of product.images">
+                  <li>{{img.image_name}}</li>
+                </ul>
+              
             </ul>
             <div class="back-btn">
               <a routerLink="/dashboard" class="btn btn-primary">
