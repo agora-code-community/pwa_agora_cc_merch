@@ -30,12 +30,12 @@ import { LoginComponent } from './components/login/login.component';
 
 const appRoutes: Routes = [
 
-  {path:'', component: StoreFrontComponent},
-  {path:'checkout', component: CheckOutComponent},
-  {path:'dashboard', component: DashboardComponent},
-  {path:'orders', component: OrdersComponent},
-  {path:'categories', component: CategoriesComponent},
-  {path:'cart', component: CartComponent},
+  { path: '', component: StoreFrontComponent },
+  { path: 'checkout', component: CheckOutComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'orders', component: OrdersComponent },
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'cart', component: CartComponent },
 
 
 ];
