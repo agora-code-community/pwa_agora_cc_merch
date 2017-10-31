@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+
+      <h3>Edit Product - <small>{{name}}</small></h3>
+
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">Edit form</div>
+        <div class="panel-body">
+          <form class="form-horizontal" (ngSubmit)="onEditSubmit(prodForm.value)" #prodForm="ngForm" enctype="multipart/form-data">
+            <fieldset>
+              <div class="form-group">
+                <label for="inputEmail" class="control-label col-md-4 col-lg-2">Product Name</label>
+                <div class="col-md-8 col-lg-10">
+                  <input type="text" name="name" [(ngModel)]="name" class="form-control input-sm" id="prodName" placeholder="Name">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputPassword" class="control-label col-md-4 col-lg-2">Product description</label>
+                <div class="col-md-8 col-lg-10">
+                  <textarea class="form-control input-sm" rows="5" name="description" [(ngModel)]="description"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="price" class="control-label col-md-4 col-lg-2">Price</label>
+                <div class="col-md-8 col-lg-10">
+                  <div class="input-group">
+                    <span class="input-group-addon">ZMW</span>
+                    <input type="number" name="price" [(ngModel)]="price" class="form-control input-sm" id="price" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail" class="control-label col-md-4 col-lg-2">Product category</label>
+                <div class="col-md-8 col-lg-10">
+                  <select *ngIf="categories" name="category" [(ngModel)]="category" class="form-control" required>
+                    <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group" style="text-align: center">
+                <button type="submit" class="btn btn-success" value="Submit">Edit Product</button>
+                <a routerLink="/admin/products" class="btn btn-info"><i class="fa fa-arrow-left"></i> Back</a>
+              </div>
+            </fieldset>  
+          </form>
+        </div>
+      
+      </div><!-- ./panel -->
+    </div><!-- ./col -->
+    
+  </div> <!-- ./row -->
+</div>
