@@ -62,7 +62,8 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    BootstrapModalModule
+    BootstrapModalModule,
+    NgxCarouselModule
   ],
   entryComponents:[
     CartMoComponent

@@ -21,6 +21,7 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { EditProductComponent } from './components/edit-product/edit-product.component';
 import { EditCategoryComponent } from './components/edit-category/edit-category.component';
 import { DetailsComponent } from './components/details/details.component';
+import { StoreFrontComponent } from './components/store-front/store-front.component';
 
 // these specify the apps forntend routes
 const appRoutes: Routes = [
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
     CategoriesComponent,
     EditProductComponent,
     EditCategoryComponent,
-    DetailsComponent
+    DetailsComponent,
+    StoreFrontComponent
   ],
   imports: [
     BrowserModule,
