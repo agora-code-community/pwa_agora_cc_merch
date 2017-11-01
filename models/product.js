@@ -4,47 +4,33 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 
-const imagesSchema = mongoose.Schema({
-    image_name: { type: String },
-    imagePath: { type: String }
-});
-
 // Product db schema
 const productSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        index: true
-    },
-    description: {
-        type: String,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category'
-    },
-    images: [{
-        image_name: String,
-        image_path: String
-    }],
-    created_at: {
+	name: {
+		type: String,
+		required: true,
+		index: true
+	},
+	description: {
+		type: String,
+		required: true
+	},
+	price: {
+		type: Number,
+		required: true
+	},
+	category: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Category'
+	},
+	images: [{
+		image_name: String,
+		image_path: String
+	}],
+	created_at: {
         type: String,
         default: Date.now
-    }
-    // details: {
-    // 	color: String,  // is an arrat to contain multiple colors
-    // 	size: String // is an arrat to contain multiple sizes
-    // 	// weight: String
-    // },
-    // quantity:{   // available stock
-    // 	type: String,
-    // 	required: true,
-    // }, 
+    } 
 });
 
 // enable the user to be used in external functions
@@ -55,29 +41,25 @@ const Product = module.exports = mongoose.model('Product', productSchema);
  * @param id is the id of said product
  */
 module.exports.getProductById = (id, callback) => {
-    Product.findById(id, callback);
+	Product.findById(id, callback);
 };
 
 /**
  * Retrieves all the products in the system
  */
 module.exports.getProducts = (callback, limit) => {
-    Product.find(callback).limit(limit).sort([
-        ['created_at', 'ascending']
-    ]);
+	Product.find(callback).limit(limit).sort([['created_at', 'ascending']]);
 };
 
 /**
  * Retrieves products by category
  * @param category_id the id of the category of a certain product
  */
-module.exports.getProductByCategory = (category_id, callback, limit) => {
-    // query to retrieve all products of a specified category
-    const query = { category: category_id };
+module.exports.getProductByCategory = (category_id, callback,limit) => {
+	// query to retrieve all products of a specified category
+	const query = {category: category_id};
 
-    Product.find(query, callback).limit(limit).sort([
-        ['created_at', 'ascending']
-    ]);
+	Product.find(query, callback).limit(limit).sort([['created_at', 'ascending']]);
 };
 
 /**
@@ -85,19 +67,16 @@ module.exports.getProductByCategory = (category_id, callback, limit) => {
  * @param data Is the object containing data to be saved
  */
 module.exports.createProduct = (data, callback) => {
-    // creating a product object
-    let add = {
-        name: data.name,
-        description: data.description,
-        price: data.price,
-        category: data.category,
-        // details: {
-        // 	color: data.color,
-        // 	size: data.size
-        // }
-    };
-    // saves to the db
-    Product.create(add, callback);
+	// creating a product object
+	let add = {
+		name: data.name,
+		description: data.description,
+		price: data.price,
+		category: data.category,
+		images: data.images  // holds uploaded images data
+	};
+	// saves to the db
+	Product.create(add, callback);
 };
 
 /**
@@ -105,24 +84,24 @@ module.exports.createProduct = (data, callback) => {
  * @param product_id the id of the product to be updated
  */
 module.exports.updateProduct = (product_id, data, options, callback) => {
-    // Query to find a specific product with this id
-    const query = { _id: product_id };
+	// Query to find a specific product with this id
+	const query = {_id: product_id};
 
-    // creating a object containing the updated data
-    let update = {
-        name: data.name,
-        description: data.description,
-        price: data.price,
-        category: data.category
-            // details: {
-            // 	color: data.color,
-            // 	size: data.size
-            // 	// weight: data.weight
-            // },
-            //quantity:data.quantity, 
-    };
-    // finds the product with id=product_id and updates it
-    Product.findOneAndUpdate(query, update, options, callback);
+	// creating a object containing the updated data
+	let update = {
+		name: data.name,
+		description: data.description,
+		price: data.price,
+		category: data.category
+		// details: {
+		// 	color: data.color,
+		// 	size: data.size
+		// 	// weight: data.weight
+		// },
+		//quantity:data.quantity, 
+	};
+	// finds the product with id=product_id and updates it
+	Product.findOneAndUpdate(query, update, options, callback);
 };
 
 /**
@@ -130,6 +109,6 @@ module.exports.updateProduct = (product_id, data, options, callback) => {
  * @param product_id Is the id of the product to be deleted
  */
 module.exports.deleteProduct = (product_id, callback) => {
-    // finds a product by its id and removes it
-    Product.findByIdAndRemove(product_id, callback);
-};
+	// finds a product by its id and removes it
+	Product.findByIdAndRemove(product_id, callback);
+}
