@@ -88,11 +88,7 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     BootstrapModalModule,
-<<<<<<< HEAD
     NgxCarouselModule
-=======
-    FlashMessagesModule
->>>>>>> 1cbba91558650bc26248b562ffb726eed7294738
   ],
   entryComponents: [
     CartMoComponent
