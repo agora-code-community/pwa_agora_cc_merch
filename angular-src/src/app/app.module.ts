@@ -38,6 +38,9 @@ import {AuthGuard} from './guards/auth.guard';
 import { NgxCarouselModule } from 'ngx-carousel';
 import 'hammerjs';
 
+//Design
+import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+
 const appRoutes: Routes = [
 
   { path: '', component: StoreFrontComponent },
@@ -55,6 +58,7 @@ const appRoutes: Routes = [
   { path: 'admin/category-details/:id', component: DetailsPageComponent },
   { path: 'admin/category/edit/:id', component: EditCategoryComponent },
   { path: 'admin/product/edit/:id', component: EditProductComponent },
+
 
 ];
 
@@ -88,7 +92,8 @@ const appRoutes: Routes = [
     HttpModule,
     RouterModule.forRoot(appRoutes),
     BootstrapModalModule,
-    NgxCarouselModule
+    NgxCarouselModule,
+    AngularFontAwesomeModule
   ],
   entryComponents: [
     CartMoComponent
