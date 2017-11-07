@@ -32,11 +32,11 @@ export class CategoryFormComponent implements OnInit {
     this.categoryService.saveCategory(fData).subscribe(data => {
       if (data.success) {
         this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/categories']); // redirects to categories page
+        this.router.navigate(['/admin/categories']); // redirects to categories page
       } else {
         // if not saved
         this.flashMessage.show(data.msg, {cssClass: 'alert-warning', timeout: 3000});
-        this.router.navigate(['/add-category']); // redirects to category form
+        this.router.navigate(['/admin/category/create']); // redirects to category form
       }
     });
   }

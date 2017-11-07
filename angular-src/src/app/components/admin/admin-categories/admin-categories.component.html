@@ -18,7 +18,9 @@
       <div *ngIf="categories" class="row">
         <div class="col-md-8 col-md-offset-2">  
           <div class="panel panel-default">
-            <div class="panel-heading">Category overview</div>
+            <div class="panel-heading">Category overview
+              <a routerLink="/admin/category/create" class="btn btn-sm pull-right"><i class="fa fa-plus"></i></a>
+            </div>
             <div class="panel-body">
               <table class="table table-striped table-hover ">
                 <thead>

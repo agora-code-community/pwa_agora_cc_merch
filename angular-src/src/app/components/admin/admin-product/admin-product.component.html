@@ -9,13 +9,17 @@
         </div>
       </div>
     
-      <h3 *ngIf="!products">There are no products to show, please add some by clicking the "Add new product" button above.</h3>
+      <h3 *ngIf="!products">
+        There are no products to show, please add some by clicking <a routerLink="/admin/product/create">here.</a>
+      </h3>
     
       <!-- if products exists in the db, table shows otherwise it wont -->
       <div *ngIf="products" class="row">
         <div class="col-md-10 col-md-offset-1">  
           <div class="panel panel-default">
-            <div class="panel-heading">Product overview</div>
+            <div class="panel-heading">Product overview
+              <a routerLink="/admin/product/create" class="btn btn-sm pull-right"><i class="fa fa-plus"></i></a>
+            </div>
             <div class="panel-body">
               <table class="table table-striped table-hover ">
                 <thead>
@@ -32,10 +36,10 @@
                       <a routerLink="/admin/product-details/{{product._id}}">{{product.name}} </a>
                     </td>
                     <td>
-                      <a routerLink="/admin/product/edit/{{product._id}}" class="btn btn-default">
+                      <a routerLink="/admin/product/edit/{{product._id}}" class="btn btn-link btn-default">
                         <i class="fa fa-pencil"></i>
                       </a> |
-                      <button type="button" class="btn btn-link" data-toggle="modal" [attr.data-target]="'#del'+product._id">
+                      <button type="button" class="btn btn-link btn-danger" data-toggle="modal" [attr.data-target]="'#del'+product._id">
                         <i class="fa fa-times"></i>
                       </button>
                       

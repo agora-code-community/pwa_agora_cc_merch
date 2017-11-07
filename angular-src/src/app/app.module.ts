@@ -20,7 +20,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartMoComponent } from './components/cart-mo/cart-mo.component';
 import { ProductComponent } from './components/product/product.component';
 import { LoginComponent } from './components/login/login.component';
-// admin components
+// Admin components
 import { AdminProductComponent } from './components/admin/admin-product/admin-product.component';
 import { AdminCategoriesComponent } from './components/admin/admin-categories/admin-categories.component';
 import { CategoryFormComponent } from './components/admin/category-form/category-form.component';
@@ -29,17 +29,18 @@ import { EditCategoryComponent } from './components/admin/edit-category/edit-cat
 import { EditProductComponent } from './components/admin/edit-product/edit-product.component';
 import { DetailsPageComponent } from './components/admin/details-page/details-page.component';
 
+// Services
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service';
-import {AuthGuard} from './guards/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { NgxCarouselModule } from 'ngx-carousel';
 import 'hammerjs';
 
-//Design
-import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
+// Design
+// import { AngularFontAwesomeModule } from 'angular-font-awesome/angular-font-awesome';
 
 const appRoutes: Routes = [
 
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'categories', component: CategoriesComponent },
+  { path: 'product-details/:id', component: ProductComponent },
   { path: 'cart', component: CartComponent },
   // admin routes
   { path: 'admin/products', component: AdminProductComponent }, // overviews
@@ -93,7 +95,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     BootstrapModalModule,
     NgxCarouselModule,
-    AngularFontAwesomeModule
+    FlashMessagesModule
+    // AngularFontAwesomeModule
   ],
   entryComponents: [
     CartMoComponent

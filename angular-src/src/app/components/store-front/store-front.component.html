@@ -1,8 +1,43 @@
 <div class="row">
+    <!-- Ordinary merch -->
     <div>
         <div class="container">
             <a class="">
-                <img src="../../assets/merch-line.png">
+                <img class="img-reponsive" src="../../assets/merch-line.png">
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <h3 *ngIf="!products">There isn't any merchandise to view currently, please check at a later date. :)</h3>
+    <ngx-carousel *ngIf="products" [inputs]="carouselTile" (carouselLoad)="carouselTileLoad($event)">
+
+        <ngx-tile NgxCarouselItem *ngFor="let Tile of products">
+            <div item-width="245">
+                <h1>
+                    <img class="img-reponsive" src="http://localhost:3000/file/{{Tile.images[0].image_name}}" width="230">
+                </h1>
+                <div class="tile-content">
+                    <h5>
+                        <a routerLink="/product-details/{{Tile._id}}">{{Tile.name}}</a>
+                    </h5>
+                    <label>
+                        <h6>{{ Tile.price | currency:'ZMW' }}</h6>
+                    </label>
+                </div>
+            </div> 
+        </ngx-tile>
+        
+        <button NgxCarouselPrev class='leftRs'>&lt;</button>
+        <button NgxCarouselNext class='rightRs'>&gt;</button>
+    </ngx-carousel>
+</div>
+<div class="row">
+    <!-- Game jam edition -->
+    <div>
+        <div class="block">
+            <a class="">
+                <img class="img-reponsive" src="assets/merch-line2.png">
             </a>
         </div>
     </div>
@@ -21,32 +56,10 @@
     </ngx-carousel>
 </div>
 <div class="row">
-    <div>
+    <div class="line-end">
         <div class="block">
             <a class="">
-                <img src="assets/merch-line2.png">
-            </a>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <ngx-carousel [inputs]="carouselTile" (carouselLoad)="carouselTileLoad($event)">
-
-        <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
-            <h1>{{Tile + 1}}</h1>
-            <h4>{{Tile + 1}}</h4>
-            <label><h6>ZMW {{Tile + 1}}</h6></label>
-        </ngx-tile>
-
-        <button NgxCarouselPrev class='leftRs'>&lt;</button>
-        <button NgxCarouselNext class='rightRs'>&gt;</button>
-    </ngx-carousel>
-</div>
-<div class="row">
-    <div>
-        <div class="block">
-            <a class="">
-                <img src="../../assets/merch-line-end.png">
+                <img class="img-reponsive" src="../../assets/merch-line-end.png">
             </a>
         </div>
     </div>

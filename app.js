@@ -41,7 +41,7 @@ const orders = require('./routes/orderRoutes');
 // CORS middleware
 app.use(cors());
 
-//set static folder
+// set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // bodyParser middleware
@@ -62,6 +62,30 @@ require('./config/passport')(passport);
 // Index Route
 app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
+});
+
+// Route for image display
+app.get('/file/:name', function (req, res, next) {
+    
+    var options = {
+        root: __dirname + '/public/uploads',
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+
+    var fileName = req.params.name;
+
+    res.sendFile(fileName, options, function (err) {
+        if (err) {
+            next(err);
+        } else {
+            console.log('Sent:', fileName);
+        }
+    });
+
 });
 
 // handles listening to the specified port and starts server

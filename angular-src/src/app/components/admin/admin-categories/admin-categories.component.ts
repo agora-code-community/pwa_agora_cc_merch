@@ -35,11 +35,11 @@ export class AdminCategoriesComponent implements OnInit {
       if (data.success) {
         // show success alert
         this.flashMessage.show(data.msg, { cssClass: 'alert-success', timeout: 3000 });
-        this.router.navigateByUrl('/categories');
+        this.router.navigateByUrl('/admin/categories');
       } else {
         this.flashMessage.show('An error occurred during the process, please try again.',
           { cssClass: 'alert-warning', timeout: 3000 });
-        this.router.navigate(['/categories']); // redirect to category page
+        this.router.navigate(['/admin/categories']); // redirect to category page
       }
     });
   }

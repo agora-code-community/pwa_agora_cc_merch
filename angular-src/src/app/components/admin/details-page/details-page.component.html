@@ -35,7 +35,7 @@
               <p><strong>Category:</strong> {{product.category}}</p>
               <p><strong>Price:</strong> {{ product.price | currency: 'ZMW'}}</p>
               <p><strong>Description:</strong> {{product.description}}</p>
-              
+              <p>{{product.images[0].image_name}}</p>
                 <strong>Images:</strong> 
                 <ul *ngFor="let img of product.images">
                   <li>{{img.image_name}}</li>
