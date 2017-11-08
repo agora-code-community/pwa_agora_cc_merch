@@ -28,6 +28,11 @@
     border-radius: 999px;
     right: 0;
 }
+
+.bannerStyle h1 img {
+    width: 370px;
+    height: 370px;
+}
 /* ./ Carousel CSS */
 
 /* Card CSS */

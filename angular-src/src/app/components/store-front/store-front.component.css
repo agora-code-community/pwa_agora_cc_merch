@@ -41,6 +41,12 @@ h1 {
     padding: 2px 16px;
 }
 
+.cart-btn {
+    text-align: center;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    color: purple;
+}
 
 /* end carousel card CSS*/
 
