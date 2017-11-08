@@ -1,4 +1,10 @@
+import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { CategoryService } from './../../services/category.service';
+import { ProductModel } from './../../models/productModel';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-product-form',
@@ -7,9 +13,79 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductFormComponent implements OnInit {
 
-  constructor() { }
+  // variable to hold db categories
+  categories: any;
+
+  // form variables
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  pictures: Array<File> = [];
+
+  constructor(
+    private catService: CategoryService,
+    private productService: ProductService,
+    private flashMessage: FlashMessagesService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+    // on init get all existing categories from db
+    this.catService.getCategories().subscribe(data => {
+      this.categories = data;
+    });
   }
 
+  /**
+   * Handles submitted form
+   * @param data Is the submitted form
+   */
+  onSubmit(data) {
+    // console.log(data);
+    const files: Array<File> = this.pictures;  // add the pictures to the array files
+    // console.log(files);
+
+    // Can only process the form if images are not more that 5
+    if (files.length > 5) {
+      // throw error
+      let msg = 'Error with files: You can only upload upto 5 image files. Please try again.';
+      this.flashMessage.show(msg, {cssClass: 'alert-info', timeout: 4000});
+    } else {
+      // create a new FormData object
+      const formData = new FormData();
+
+      // adding all form inputs to formData
+      for(let key in data) {
+        if(data.hasOwnProperty(key)) {
+          // append key and value to formData
+          formData.append(key, data[key]);
+        }
+      }
+
+      // append the image files to the form data
+      for(let i = 0; i < files.length; i++) {
+        formData.append('pictures[]', files[i], files[i]['name']);
+      }
+
+      // send the data to the backend
+      this.productService.saveProduct(formData).subscribe(data => {
+        if(data.success) {
+          this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+          // re-route to dashboard
+          this.router.navigateByUrl('/dashboard');
+        } else {
+          this.flashMessage.show(data.msg, {cssClass: 'alert-warning', timeout: 4000});
+        }
+      });
+    } // end if-else
+  }
+
+  /**
+   * Upon change we add the images to the pictures array.
+   * @param fileInput the file input
+   */
+  fileChangeEvent(fileInput: any) {
+    this.pictures = <Array<File>>fileInput.target.files;
+  }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { CategoryService } from './../../services/category.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-category-form',
@@ -13,7 +15,11 @@ export class CategoryFormComponent implements OnInit {
   name: String;
   description: String;
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(
+    private categoryService: CategoryService,
+    private flashMessage: FlashMessagesService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -25,10 +31,12 @@ export class CategoryFormComponent implements OnInit {
   onFormSubmit(fData) {
     this.categoryService.saveCategory(fData).subscribe(data => {
       if(data.success) {
-        console.log("successful");  // use flash messages here
+        this.flashMessage.show(data.msg, {cssClass: 'alert-success', timeout: 3000});
+        this.router.navigate(['/categories']); // redirects to categories page
       } else {
         // if not saved
-        console.log("failed");
+        this.flashMessage.show(data.msg, {cssClass: 'alert-warning', timeout: 3000});
+        this.router.navigate(['/add-category']); // redirects to category form
       }
     });
   }

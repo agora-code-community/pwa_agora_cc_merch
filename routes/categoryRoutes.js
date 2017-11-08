@@ -40,7 +40,7 @@ router.post('/create', (req, res, next) => {
 
     Category.createCategory(data, (err, category) => {
         if (err) {
-            res.json({success: false, msg: 'Failed to create category'});
+            res.json({success: false, msg: 'Failed to create category, please try again'});
         } else {
             res.json({success: true, msg: 'Category created successfully.'});
         }

@@ -32,9 +32,10 @@ export class ProductService {
    */
   saveProduct(data) {
     let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('Content-Type', 'application/json'); // not really needed but wont get rid of them just yet
 
-    return this.http.post('http://localhost:3000/api/products/create', data, {headers: headers})
+    // removed the header
+    return this.http.post('http://localhost:3000/api/products/create', data)
       .map(res => res.json());
   }
 

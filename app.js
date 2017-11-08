@@ -6,6 +6,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
+const multer = require('multer');
 
 // Connect to database
 mongoose.Promise = global.Promise;
@@ -50,13 +51,13 @@ app.use(bodyParser.json());
 app.use('/api/categories', categories);
 app.use('/api/products', products);
 app.use('/api/orders', orders);
+app.use('/users', users);
+
 //Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 require('./config/passport')(passport);
-
-app.use('/users', users);
 
 // Index Route
 app.get('/', (req, res) => {

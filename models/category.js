@@ -77,5 +77,3 @@ module.exports.deleteCategory = (category_id, callback) => {
 	Category.findByIdAndRemove(category_id, callback);
 }
 
-const Category = module.exports = mongoose.model('Category', categorySchema);
-
