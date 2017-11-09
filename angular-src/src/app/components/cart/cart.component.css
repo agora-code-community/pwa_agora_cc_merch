@@ -1,5 +1,5 @@
 .row {
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .table>tbody>tr>td,
@@ -20,7 +20,8 @@
         float: left;
     }
     .actions .btn-danger {
-        float: right;
+        /* float: inherit; */
+        text-align: center;
     }
     table#cart thead {
         display: none;

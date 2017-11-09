@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
+  // variables
+  subtotal: number;
+
   constructor() { }
 
   ngOnInit() {
