@@ -37,6 +37,7 @@ const port = 3000;
 const categories = require('./routes/categoryRoutes');
 const products = require('./routes/productRoutes');
 const orders = require('./routes/orderRoutes');
+const cart = require('./routes/cartRoutes');
 
 // CORS middleware
 app.use(cors());
@@ -51,6 +52,7 @@ app.use(bodyParser.json());
 app.use('/api/categories', categories);
 app.use('/api/products', products);
 app.use('/api/orders', orders);
+app.use('/api/cart', cart);
 app.use('/users', users);
 
 //Passport middleware

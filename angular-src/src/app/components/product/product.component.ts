@@ -1,3 +1,4 @@
+// import { CartService } from './../../services/cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
@@ -12,18 +13,23 @@ export class ProductComponent implements OnInit {
 
   // variables
   id: string; // to hold the product's id from url
+  quantity: number; // the quantity entered by user
 
   product: any; // holds data of the product
   carouselBanner: NgxCarousel; // carousel object
 
   constructor(
     private productService: ProductService,
+    // private cartService: CartService,
     private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     // Getting id from url
     this.id = this.route.snapshot.params['id'];
+
+    // initialize quantity
+    this.quantity = 1;
 
     // Get product from db
     this.productService.getSingleProduct(this.id).subscribe(data => {
@@ -75,6 +81,28 @@ export class ProductComponent implements OnInit {
    /* It will be triggered on every slide*/
    onmoveFn(data) {
     console.log(data);
+  }
+
+  /**
+   * Adds a product to the cart
+   * @param item the product being posted to the db
+   */
+  addToCart(item) {
+    // add quantity property to the item object
+    item.qty = this.quantity;
+
+    console.log(item);
+
+    // this.cartService.addToCart(item).subscribe(data => {
+    //   if (data.success) {
+    //     console.log('Successfully added\n' + data.cart);
+    //   } else {
+    //     console.log('ERROR somewhere');
+    //   }
+    // }, err => {
+    //   console.log(err);
+    //   return false;
+    // });
   }
 
 }
