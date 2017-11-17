@@ -8,6 +8,7 @@ const CartItemSchema = mongoose.Schema({
     title: { type: String },
     price: { type: Number },
     qty: { type: Number, default: 1 },
+    description: { type: String },
     subTotal: { type: Number },
     image: { 
         image_name: String,

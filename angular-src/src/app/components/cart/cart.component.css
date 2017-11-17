@@ -2,6 +2,15 @@
     margin-top: 10px;
 }
 
+.centered {
+    text-align: center;
+}
+
+/* CSS for thee cart-image */
+#cart-img {
+    background-color: #90A4AE;
+}
+
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
     vertical-align: middle;
@@ -32,7 +41,7 @@
         min-width: 320px;
     }
     table#cart tbody tr td:first-child {
-        background: #333;
+        background: #BDBDBD;  /*#B39DDB, #BDBDBD, #7A4B7A*/
         color: #fff;
     }
     table#cart tbody td:before {

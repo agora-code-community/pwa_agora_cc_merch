@@ -13,7 +13,7 @@ const Product = require('../models/product');
 // a user has to be authenticated before access a route.
 
 // get cart (remember to use token not id directly)
-router.get('/show_cart/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+router.get('/show-cart/', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     const user_id = req.user._id;
 
     Cart.getCartByUser(user_id, (err, cart) => {

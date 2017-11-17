@@ -32,6 +32,7 @@ import { DetailsPageComponent } from './components/admin/details-page/details-pa
 // Services
 import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
+import { CartService } from './services/cart.service';
 import { ValidateService } from './services/validate.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service';
@@ -101,7 +102,7 @@ const appRoutes: Routes = [
   entryComponents: [
     CartMoComponent
   ],
-  providers: [ProductService, CategoryService],
+  providers: [ProductService, CategoryService, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
