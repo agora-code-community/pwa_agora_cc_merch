@@ -9,12 +9,6 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 })
 export class CartComponent implements OnInit {
 
-  // variables
-  price: number;
-  quantity: number;
-  subtotal: number;
-  total: number;
-
   cart: any; // holds the cart retrieved form the db
 
   constructor(
@@ -23,10 +17,7 @@ export class CartComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.price = 100.00;
-    // this.quantity = 1;
-    this.subtotal = this.price * this.quantity;
-
+    // fetch cart from the db on init
     this.cartService.showCart().subscribe(data => {
       this.cart = data;
     });

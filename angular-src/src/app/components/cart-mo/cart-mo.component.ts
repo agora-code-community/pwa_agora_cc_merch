@@ -12,7 +12,7 @@ export interface CartMo {
   styleUrls: ['./cart-mo.component.css']
 })
 
-export class CartMoComponent extends DialogComponent <CartMo,boolean> implements CartMo {
+export class CartMoComponent extends DialogComponent <CartMo, boolean> implements CartMo {
   title: string;
   message: string;
   constructor(dialogService: DialogService) {
@@ -20,8 +20,8 @@ export class CartMoComponent extends DialogComponent <CartMo,boolean> implements
   }
 
   confirm() {
-    // we set dialog result as true on click on confirm button, 
-    // then we can get dialog result from caller code 
+    // we set dialog result as true on click on confirm button,
+    // then we can get dialog result from caller code
     this.result = true;
     this.close();
   }

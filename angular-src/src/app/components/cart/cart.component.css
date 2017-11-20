@@ -11,6 +11,11 @@
     background-color: #90A4AE;
 }
 
+#total {
+    color: purple;
+    font-weight: bold;
+}
+
 .table>tbody>tr>td,
 .table>tfoot>tr>td {
     vertical-align: middle;

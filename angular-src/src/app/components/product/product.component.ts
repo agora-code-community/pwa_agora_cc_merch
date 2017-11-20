@@ -1,8 +1,9 @@
-// import { CartService } from './../../services/cart.service';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../services/product.service';
+import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-product',
@@ -20,8 +21,10 @@ export class ProductComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    // private cartService: CartService,
-    private route: ActivatedRoute
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private flashMessages: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -91,18 +94,21 @@ export class ProductComponent implements OnInit {
     // add quantity property to the item object
     item.qty = this.quantity;
 
-    console.log(item);
-
-    // this.cartService.addToCart(item).subscribe(data => {
-    //   if (data.success) {
-    //     console.log('Successfully added\n' + data.cart);
-    //   } else {
-    //     console.log('ERROR somewhere');
-    //   }
-    // }, err => {
-    //   console.log(err);
-    //   return false;
-    // });
+    // sends request to add item to cart
+    this.cartService.addToCart(item).subscribe(data => {
+      if (data.success) {
+        this.router.navigateByUrl('/cart');
+        this.flashMessages.show('Item has been successfully added to your cart',
+          {cssClass: 'alert-success', timeout: 4000});
+      } else {
+        this.router.navigate(['/product-details/' + item._id]);
+        this.flashMessages.show('Oops! An error occured, please try later.',
+          {cssClass: 'alert-warning', timeout: 4000});
+      }
+    }, err => {
+      console.log(err);
+      return false;
+    });
   }
 
 }

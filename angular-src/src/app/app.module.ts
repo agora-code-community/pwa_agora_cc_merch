@@ -20,6 +20,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CartMoComponent } from './components/cart-mo/cart-mo.component';
 import { ProductComponent } from './components/product/product.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 // Admin components
 import { AdminProductComponent } from './components/admin/admin-product/admin-product.component';
 import { AdminCategoriesComponent } from './components/admin/admin-categories/admin-categories.component';
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'product-details/:id', component: ProductComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'register', component: RegisterComponent },
   // admin routes
   { path: 'admin/products', component: AdminProductComponent }, // overviews
   { path: 'admin/categories', component: AdminCategoriesComponent },
@@ -87,6 +89,7 @@ const appRoutes: Routes = [
     EditProductComponent,
     DetailsPageComponent,
     AdminProductComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,9 +103,11 @@ const appRoutes: Routes = [
     // AngularFontAwesomeModule
   ],
   entryComponents: [
-    CartMoComponent
+    CartMoComponent, LoginComponent
   ],
-  providers: [ProductService, CategoryService, CartService],
+  providers: [ProductService, CategoryService, CartService, AuthService, AuthGuard,
+    ValidateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

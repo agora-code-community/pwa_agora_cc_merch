@@ -6,13 +6,7 @@ import 'rxjs/add/operator/map';
 export class CartService {
 
   // temporal token
-  token = 'JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7Il9pZCI6I'+
-  'jVhMDlhYTg0ZjljZTE3MThhY2M4MzJkNiIsIm5hbWUiOiJJenVrdSBNaWRvcml5YSIsImV'+
-  'tYWlsIjoiZGVrdUBleGFtcGxlLmNvbSIsInVzZXJuYW1lIjoiRGVrdSIsInBhc3N3b3JkI'+
-  'joiJDJhJDEwJEFOa0FQRlZydHJ5NWc2OUdieE1mRmV6YVBBZXhHVmVramFjLlYzSlR6dW'+
-  'd0UHFyYmkyRTBpIiwicGhvbmUiOiIwOTU0MjI4ODU1IiwicGhvbmVfMiI6IjA5NjU4OTYz'+
-  'MjQiLCJhZGRyZXNzIjoiR1BaIiwiX192IjowfSwiaWF0IjoxNTEwNTg5NTU4LCJleHAiOjE'+
-  '1MTExOTQzNTh9.On_LrH22qQ1uuU_oJ1jos-fZv9jJ0uyX7NYWbjf_i18';
+  authToken: any;
 
   constructor(private http: Http) { }
 
@@ -20,8 +14,9 @@ export class CartService {
    * Returns the logged in user's cart
    */
   showCart() {
+    this.loadToken();
     const headers = new Headers();
-    headers.append('Authorization', this.token);
+    headers.append('Authorization', this.authToken);
 
     return this.http.get('http://localhost:3000/api/cart/show-cart', {headers: headers})
       .map(res => res.json());
@@ -32,8 +27,9 @@ export class CartService {
    * @param item is the product being added to the cart
    */
   addToCart(item) {
+    this.loadToken();
     const headers = new Headers();
-    headers.append('Authorization', this.token);
+    headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
 
     return this.http.post('http://localhost:3000/api/cart/add-to-cart', item, {headers: headers})
@@ -45,8 +41,9 @@ export class CartService {
    * @param id is the id of the item being removed from the cart
    */
   removeItem(id) {
+    this.loadToken();
     const headers = new Headers();
-    headers.append('Authorization', this.token);
+    headers.append('Authorization', this.authToken);
 
     return this.http.delete('http://localhost:3000/api/cart/delete-item/' + id, {headers: headers})
       .map(res => res.json());
@@ -56,10 +53,21 @@ export class CartService {
    * Clears the cart of all entries
    */
   deleteAll() {
+    this.loadToken();
+
     const headers = new Headers();
-    headers.append('Authorization', this.token);
+    headers.append('Authorization', this.authToken);
 
     return this.http.delete('http://localhost:3000/api/cart/delete-all', {headers: headers})
       .map(res => res.json());
   }
+
+  /**
+   * Gets the token from local storage
+   */
+  loadToken() {
+    const token = localStorage.getItem('token');
+    this.authToken = token;
+  }
+
 }
