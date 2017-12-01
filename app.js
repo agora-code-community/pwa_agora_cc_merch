@@ -66,6 +66,11 @@ app.get('/', (req, res) => {
     res.send('Invalid Endpoint');
 });
 
+// redirect all other routes to index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 // Route for image display
 app.get('/file/:name', function (req, res, next) {
     

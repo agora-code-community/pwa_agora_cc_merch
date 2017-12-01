@@ -6,6 +6,6 @@
 
 module.exports = {
     // the database url
-    database: 'mongodb://localhost:27017/agoramerch', 
+    database: 'mongodb://Chingaipe:chinga@ds119436.mlab.com:19436/agoramerch', 
     secret: 'appsecret' // used for token auth
 }
