@@ -40,12 +40,12 @@ export class LoginComponent extends DialogComponent<LoginMo, boolean> implements
         this.authService.storeUserData(data.token, data.user);
         // flash message and redirect
         this.flashMessages.show('Welcome, you are now logged in as - ' + data.user.username ,
-          {cssClass: 'alert-success', timeout: 5000});
+          {cssClass: 'alert-success', timeout: 3000});
           // redirect to page
         this.router.navigate(['/']);
       } else {
         // not successfull
-        this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
+        this.flashMessages.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
       }
     });
 

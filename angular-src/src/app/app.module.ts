@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 
 import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
@@ -52,17 +52,17 @@ const appRoutes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'product-details/:id', component: ProductComponent },
-  { path: 'cart', component: CartComponent },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent },
   // admin routes
-  { path: 'admin/products', component: AdminProductComponent }, // overviews
-  { path: 'admin/categories', component: AdminCategoriesComponent },
-  { path: 'admin/category/create', component: CategoryFormComponent }, // create form
-  { path: 'admin/product/create', component: ProductFormComponent },  // create form
-  { path: 'admin/product-details/:id', component: DetailsPageComponent }, // view details
-  { path: 'admin/category-details/:id', component: DetailsPageComponent },
-  { path: 'admin/category/edit/:id', component: EditCategoryComponent },
-  { path: 'admin/product/edit/:id', component: EditProductComponent },
+  { path: 'admin/products', component: AdminProductComponent, canActivate: [AuthGuard] }, // overviews
+  { path: 'admin/categories', component: AdminCategoriesComponent, canActivate: [AuthGuard] },
+  { path: 'admin/category/create', component: CategoryFormComponent, canActivate: [AuthGuard] }, // create form
+  { path: 'admin/product/create', component: ProductFormComponent, canActivate: [AuthGuard] },  // create form
+  { path: 'admin/product-details/:id', component: DetailsPageComponent, canActivate: [AuthGuard] }, // view details
+  { path: 'admin/category-details/:id', component: DetailsPageComponent, canActivate: [AuthGuard] },
+  { path: 'admin/category/edit/:id', component: EditCategoryComponent, canActivate: [AuthGuard] },
+  { path: 'admin/product/edit/:id', component: EditProductComponent, canActivate: [AuthGuard] },
 
 
 ];

@@ -44,6 +44,7 @@ app.use(cors());
 
 // set static folder
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'uploads'))); // images will be served from this folder
 
 // bodyParser middleware
 app.use(bodyParser.json());
@@ -70,7 +71,7 @@ app.get('/', (req, res) => {
 app.get('/file/:name', function (req, res, next) {
     
     var options = {
-        root: __dirname + '/public/uploads',
+        root: __dirname + '/uploads',  // changed to uploads folder
         dotfiles: 'deny',
         headers: {
             'x-timestamp': Date.now(),
@@ -84,7 +85,8 @@ app.get('/file/:name', function (req, res, next) {
         if (err) {
             next(err);
         } else {
-            console.log('Sent:', fileName);
+            // console.log('Sent:', fileName);
+            res.status(200);  // sends an ok.
         }
     });
 

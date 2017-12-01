@@ -12,7 +12,7 @@ const Product = require('../models/product');
 
 // setting storage engine for multer
 const storage = multer.diskStorage({
-    destination: './public/uploads',
+    destination: './uploads',
     filename: function(req, file, callback) {
         // renames file to randomString-timestamp.ext
         callback(null, randomFilename() + '-' + Date.now() + path.extname(file.originalname));

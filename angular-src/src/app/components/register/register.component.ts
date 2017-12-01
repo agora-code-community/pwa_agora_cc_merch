@@ -1,3 +1,4 @@
+import { NavbarComponent } from './../navbar/navbar.component';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
@@ -19,6 +20,10 @@ export class RegisterComponent implements OnInit {
   phone: string;
   address: string;
 
+  // err Msg
+  errUser: string;
+  errMail: string;
+
   constructor(
     private validateService: ValidateService,
     private flashMessages: FlashMessagesService,
@@ -35,13 +40,13 @@ export class RegisterComponent implements OnInit {
   onRegisterSubmit(user) {
     // Required filed validation
     if (!this.validateService.validateRegister(user)) {
-      this.flashMessages.show('Please fill in all the fields', { cssClass: 'alert-warning', timeout: 3000 });
+      this.errUser = 'All fields are required';
       return false;
     }
 
     // email validation
     if (!this.validateService.validateEmail(user.email)) {
-      this.flashMessages.show('Please enter a valid email', { cssClass: 'alert-info', timeout: 3000 });
+      this.errMail = 'Please enter a valid email';
       return false;
     }
 
@@ -49,7 +54,7 @@ export class RegisterComponent implements OnInit {
     this.authService.registerUser(user).subscribe(data => {
       // if registration happens
       if (data.success) {
-        this.flashMessages.show('Your are now registered and can log in!',
+        this.flashMessages.show('Your are now registered and can sign in!',
           { cssClass: 'alert-success', timeout: 3000 });
 
           // redirect to the login page

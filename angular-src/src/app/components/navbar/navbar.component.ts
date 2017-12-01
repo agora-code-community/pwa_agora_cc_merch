@@ -1,3 +1,4 @@
+import { CartService } from './../../services/cart.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
 import { AuthService } from './../../services/auth.service';
@@ -21,7 +22,8 @@ export class NavbarComponent implements OnInit {
       private dialogService: DialogService,
       public authService: AuthService,
       private router: Router,
-      private flashMessages: FlashMessagesService
+      private flashMessages: FlashMessagesService,
+      private cartService: CartService
     ) { }
 
   ngOnInit() {
@@ -46,7 +48,7 @@ export class NavbarComponent implements OnInit {
       }, 10000);
     }
 
-    showLogin() {
+    public showLogin() {
         const opts = {
             closeByClickingOutside: true
         };
@@ -68,6 +70,13 @@ export class NavbarComponent implements OnInit {
         const user = JSON.parse(localStorage.getItem('user'));
         this.username = user.username;
         return this.username;
+    }
+
+    getCartCount() {
+        this.cartService.showCart().subscribe(data => {
+            this.cartItems = data.itemCount;
+        });
+        return this.cartItems;
     }
 
     /**
