@@ -62,4 +62,9 @@
     margin: 0 0 16px 16px;
 }
 
+.form-control {
+    width: 20%;
+    display: inline !important;
+}
+
 /* ./ Card CSS */

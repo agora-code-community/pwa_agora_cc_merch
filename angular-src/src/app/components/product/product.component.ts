@@ -1,7 +1,9 @@
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ProductService } from './../../services/product.service';
+import { CartService } from './../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-product',
@@ -12,18 +14,25 @@ export class ProductComponent implements OnInit {
 
   // variables
   id: string; // to hold the product's id from url
+  quantity: number; // the quantity entered by user
 
   product: any; // holds data of the product
   carouselBanner: NgxCarousel; // carousel object
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private cartService: CartService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private flashMessages: FlashMessagesService
   ) { }
 
   ngOnInit() {
     // Getting id from url
     this.id = this.route.snapshot.params['id'];
+
+    // initialize quantity
+    this.quantity = 1;
 
     // Get product from db
     this.productService.getSingleProduct(this.id).subscribe(data => {
@@ -75,6 +84,31 @@ export class ProductComponent implements OnInit {
    /* It will be triggered on every slide*/
    onmoveFn(data) {
     console.log(data);
+  }
+
+  /**
+   * Adds a product to the cart
+   * @param item the product being posted to the db
+   */
+  addToCart(item) {
+    // add quantity property to the item object
+    item.qty = this.quantity;
+
+    // sends request to add item to cart
+    this.cartService.addToCart(item).subscribe(data => {
+      if (data.success) {
+        this.router.navigateByUrl('/cart');
+        this.flashMessages.show('Item has been successfully added to your cart',
+          {cssClass: 'alert-success', timeout: 4000});
+      } else {
+        this.router.navigate(['/product-details/' + item._id]);
+        this.flashMessages.show('Oops! An error occured, please try later.',
+          {cssClass: 'alert-warning', timeout: 4000});
+      }
+    }, err => {
+      console.log(err);
+      return false;
+    });
   }
 
 }

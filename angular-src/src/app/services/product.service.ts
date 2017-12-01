@@ -8,11 +8,13 @@ export class ProductService {
 
   constructor(private http: Http) { }
 
+// removed http://localhost:3000 on all routes for deployments sake
+
   /**
    * Gets all products from db
    */
   getProducts() {
-    return this.http.get('http://localhost:3000/api/products/')
+    return this.http.get('api/products/')
       .map(res => res.json());
   }
 
@@ -21,7 +23,7 @@ export class ProductService {
    * @param id The id of the product to be retrieved
    */
   getSingleProduct(id) {
-    return this.http.get('http://localhost:3000/api/products/' + id)
+    return this.http.get('api/products/' + id)
       .map(res => res.json());
   }
 
@@ -34,7 +36,7 @@ export class ProductService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json'); // not really needed but wont get rid of them just yet
     // removed the header
-    return this.http.post('http://localhost:3000/api/products/create', data)
+    return this.http.post('api/products/create', data)
       .map(res => res.json());
   }
 
@@ -47,7 +49,7 @@ export class ProductService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.put('http://localhost:3000/api/products/update/' + id, fData, {headers: headers})
+    return this.http.put('api/products/update/' + id, fData, {headers: headers})
       .map(res => res.json());
   }
 
@@ -56,7 +58,7 @@ export class ProductService {
    * @param id The id of a product to be deleted
    */
   deleteProduct(id) {
-    return this.http.delete('http://localhost:3000/api/products/delete/' + id)
+    return this.http.delete('api/products/delete/' + id)
       .map(res => res.json());
   }
 

@@ -13,7 +13,7 @@
                 <!-- for-loop comes on the ngx-item -->
                 <ngx-item NgxCarouselItem *ngFor="let img of product.images" class="bannerStyle">
                   <h1>
-                    <img src="http://localhost:3000/file/{{img.image_name}}">
+                    <img src="file/{{img.image_name}}">
                   </h1>
                 </ngx-item>
               
@@ -33,13 +33,13 @@
               Letraset sheets containing Lorem Ipsum passages, and more 
               recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </p>
-          <h4 class="price">Price: <span>{{product.price | currency}}</span></h4>
+          <h4 class="price">Price: <span>{{ product.price | currency:'ZMW' }}</span></h4>
 
-          <h5 class="col-md-3 col-sm-5 col-xs-7 quantity">
-            Quantity: <input type="number" class="form-control" value="1">
-          </h5>
+          <div class="col-md-6 col-sm-5 col-xs-7 quantity">
+            <label class="control-label">Quantity:</label> <input type="number" name="quantity" [(ngModel)]="quantity" class="form-control">
+          </div>
           <div class="action-btn">
-            <button type="button" class="btn btn-lg btn-info">Add to cart</button>
+            <button type="button" class="btn btn-lg btn-info" (click)="addToCart(product)">Add to cart</button>
           </div>
         </div><!-- ./2nd half -->
       </div>

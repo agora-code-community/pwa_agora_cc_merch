@@ -1,5 +1,19 @@
 .row {
-    margin-top: 5px;
+    margin-top: 10px;
+}
+
+.centered {
+    text-align: center;
+}
+
+/* CSS for thee cart-image */
+#cart-img {
+    background-color: #90A4AE;
+}
+
+#total {
+    color: purple;
+    font-weight: bold;
 }
 
 .table>tbody>tr>td,
@@ -20,7 +34,8 @@
         float: left;
     }
     .actions .btn-danger {
-        float: right;
+        /* float: inherit; */
+        text-align: center;
     }
     table#cart thead {
         display: none;
@@ -31,7 +46,7 @@
         min-width: 320px;
     }
     table#cart tbody tr td:first-child {
-        background: #333;
+        background: #BDBDBD;  /*#B39DDB, #BDBDBD, #7A4B7A*/
         color: #fff;
     }
     table#cart tbody td:before {

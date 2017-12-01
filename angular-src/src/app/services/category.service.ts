@@ -11,7 +11,7 @@ export class CategoryService {
    * Gets all categories from db
    */
   getCategories() {
-    return this.http.get('http://localhost:3000/api/categories/')
+    return this.http.get('api/categories/')
       .map(res => res.json());
   }
 
@@ -20,7 +20,7 @@ export class CategoryService {
    * @param id The request category's id
    */
   getCategory(id) {
-    return this.http.get('http://localhost:3000/api/categories/' + id)
+    return this.http.get('api/categories/' + id)
       .map(res => res.json());
   }
 
@@ -32,7 +32,7 @@ export class CategoryService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post('http://localhost:3000/api/categories/create', data, {headers: headers})
+    return this.http.post('api/categories/create', data, {headers: headers})
       .map(res => res.json());
   }
 
@@ -46,7 +46,7 @@ export class CategoryService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.put('http://localhost:3000/api/categories/update/' + id, data, {headers: headers})
+    return this.http.put('api/categories/update/' + id, data, {headers: headers})
       .map(res => res.json());
   }
 
@@ -55,7 +55,7 @@ export class CategoryService {
    * @param id The id of the category to be deleted
    */
   deleteCategory(id) {
-    return this.http.delete('http://localhost:3000/api/categories/delete/' + id)
+    return this.http.delete('api/categories/delete/' + id)
       .map(res => res.json());
   }
 

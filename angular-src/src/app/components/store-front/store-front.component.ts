@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 // import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { NgxCarousel } from 'ngx-carousel';
-
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { CartService } from './../../services/cart.service';
 
 @Component({
   selector: 'app-store-front',
@@ -22,7 +23,9 @@ export class StoreFrontComponent implements OnInit {
   constructor(
     // private authService: AuthService,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService,
+    private flashMessages: FlashMessagesService
   ) { }
 
   ngOnInit() {
@@ -59,6 +62,31 @@ export class StoreFrontComponent implements OnInit {
       }
     }
 
+  }
+
+  /**
+   * Adds an item to the cart
+   * @param item to be added to the cart
+   */
+  addToCart(item) {
+    // give a default value for the item quantity
+    item.qty = 1;
+
+    // uses service o add item to cart
+    this.cartService.addToCart(item).subscribe(data => {
+      if (data.success) {
+        this.router.navigateByUrl('/cart');  // route to cart-page
+        this.flashMessages.show('Item has been successfully added to your cart',
+          {cssClass: 'alert-success', timeout: 4000});  // success message
+      } else {
+        this.router.navigate(['/product-details/' + item._id]);  // redirect to product page
+        this.flashMessages.show('Oops! An error occured, please try later.',
+          {cssClass: 'alert-warning', timeout: 4000}); // error message
+      }
+    }, err => {
+      console.log(err);
+      return false;
+    });
   }
 
 }

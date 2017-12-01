@@ -28,7 +28,7 @@ router.post('/register', (req, res, next) => {
 });
 
 //Autenticate
-router.post('/autenticate', (req, res, next) => {
+router.post('/authenticate', (req, res, next) => {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -47,9 +47,9 @@ router.post('/autenticate', (req, res, next) => {
 
                 res.json({
                     success: true,
-                    token: 'JWT' + token,
+                    token: 'JWT ' + token,
                     user: {
-                        id: user.name,
+                        id: user._id,
                         name: user.name,
                         username: user.username,
                         email: user.email,

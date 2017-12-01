@@ -25,10 +25,12 @@
                 <li [routerLinkActive]="['active']">
                     <a [routerLink]="['/categories']">Categories</a>
                 </li>
-                <li [routerLinkActive]="['active']">
-                    <a [routerLink]="['/cart']">Cart</a>
+                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/cart']">Cart
+                        <span class="badge badge-info">{{ getCartCount() }}</span>
+                    </a>
                 </li>
-                <li [routerLinkActive]="['active']" class="dropdown">
+                <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Admin <span class="caret"></span>
                     </a>
@@ -52,12 +54,32 @@
                         <li><a href="#">Separated link</a></li>
                     </ul>
                 </li>
+                <li *ngIf="!authService.loggedIn()">
+                    <button class="btn btn-default padded-top" (click)="showLogin()">Sign In</button>
+                </li>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                 </form>
+                <!-- /.dropdown -->
+                <li *ngIf="authService.loggedIn()" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>
+                        <!-- user names here -->
+                        {{ getUsername() }}
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li><a [routerLink]="['/profile']"><i class="fa fa-user fa-fw"></i>My Profile</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a (click)="onLogout()" href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
             </ul>
         </div>
     </div>

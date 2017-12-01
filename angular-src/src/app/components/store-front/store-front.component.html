@@ -15,7 +15,7 @@
         <ngx-tile NgxCarouselItem *ngFor="let Tile of products">
             <div item-width="245">
                 <h1>
-                    <img class="img-reponsive" src="http://localhost:3000/file/{{Tile.images[0].image_name}}" width="230">
+                    <img class="img-reponsive" src="file/{{Tile.images[0].image_name}}" width="230">
                 </h1>
                 <div class="tile-content">
                     <h5>
@@ -24,7 +24,7 @@
                     <label>
                         <h6>{{ Tile.price | currency:'ZMW' }}</h6>
                     </label>
-                    <button type="button" class="btn btn-sm cart-btn">
+                    <button type="button" class="btn btn-sm cart-btn" (click)="addToCart(Tile)">
                         <i class="fa fa-shopping-cart"></i> Add to cart
                     </button>
                 </div>
