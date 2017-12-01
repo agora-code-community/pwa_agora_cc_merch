@@ -73,9 +73,17 @@ export class NavbarComponent implements OnInit {
     }
 
     getCartCount() {
+        let items;
         this.cartService.showCart().subscribe(data => {
-            this.cartItems = data.itemCount;
+            items = data.itemCount;
         });
+
+        // if the user doesnt have anything in their cart
+        if (items > 0) {
+            this.cartItems = items;
+        } else {
+            this.cartItems = 0;
+        }
         return this.cartItems;
     }
 
