@@ -72,20 +72,20 @@ export class NavbarComponent implements OnInit {
         return this.username;
     }
 
-    getCartCount() {
-        let items;
-        this.cartService.showCart().subscribe(data => {
-            items = data.itemCount;
-        });
+    // getCartCount() {
+    //     let items;
+    //     this.cartService.showCart().subscribe(data => {
+    //         items = data.itemCount;
+    //     });
 
-        // if the user doesnt have anything in their cart
-        if (items > 0) {
-            this.cartItems = items;
-        } else {
-            this.cartItems = 0;
-        }
-        return this.cartItems;
-    }
+    //     // if the user doesnt have anything in their cart
+    //     if (items > 0) {
+    //         this.cartItems = items;
+    //     } else {
+    //         this.cartItems = 0;
+    //     }
+    //     return this.cartItems;
+    // }
 
     /**
      * Logs the user out of the system
