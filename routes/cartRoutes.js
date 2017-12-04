@@ -46,6 +46,23 @@ router.post('/add-to-cart', passport.authenticate('jwt', { session: false }), (r
     });
 });
 
+// used in the navbar cart badge.
+router.get('/get-item-count', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+    const user = req.user._id;  // the user's id
+
+    Cart.getCartByUser(user, (err, cart) => {
+        if (err) next(err);  // error handling
+
+       if (!cart) {
+           return res.json({success: false});
+       }
+
+       if (cart) {
+           return res.json({success: true, count: cart.itemCount});
+       }
+    });
+});
+
 // delete an item from the cart
 router.delete('/delete-item/:id', passport.authenticate('jwt', {session: false}), (req, res, next) => {
     const item_id = req.params.id;  // the id of the ite, to deleted
