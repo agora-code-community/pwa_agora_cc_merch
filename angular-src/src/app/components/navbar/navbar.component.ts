@@ -1,3 +1,4 @@
+import { NavbarService } from './../../services/navbar.service';
 import { CartService } from './../../services/cart.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
@@ -23,10 +24,15 @@ export class NavbarComponent implements OnInit {
       public authService: AuthService,
       private router: Router,
       private flashMessages: FlashMessagesService,
-      private cartService: CartService
+      private cartService: CartService,
+      public navbarService: NavbarService
     ) { }
 
   ngOnInit() {
+      this.getCartCount();
+
+      // cart item count
+      this.cartItems = this.navbarService.getItemCount();
   }
 
   showConfirm() {
@@ -72,11 +78,27 @@ export class NavbarComponent implements OnInit {
         return this.username;
     }
 
+    /**
+     * Gets the count of items in the cart, to display them in the navbar
+     */
     getCartCount() {
-        this.cartService.showCart().subscribe(data => {
-            this.cartItems = data.itemCount;
+        let items;
+        this.cartService.getCartCount().subscribe(data => {
+            if (data.success) {
+                items = data.itemCount;
+            } else {
+                items = null;
+            }
         });
-        return this.cartItems;
+
+        if (items === null) {
+            this.navbarService.setItemCount(items);
+            console.log(this.navbarService.itemCount);
+        } else {
+            this.navbarService.setItemCount(items);
+
+            console.log(this.navbarService.itemCount);
+        }
     }
 
     /**
@@ -85,7 +107,7 @@ export class NavbarComponent implements OnInit {
     onLogout() {
         this.authService.logout();
         // flash logout msg
-        this.flashMessages.show('You have succefully logged out, later!', 
+        this.flashMessages.show('You have succefully logged out, later!',
             {cssClass: 'alert-success', timeout: 3000});
         // redirects to home
         this.router.navigate(['/']);

@@ -27,7 +27,7 @@
                 </li>
                 <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']">
                     <a [routerLink]="['/cart']">Cart
-                        <span class="badge badge-info">{{ getCartCount() }}</span>
+                        <span class="badge">{{ cartItems }}</span>
                     </a>
                 </li>
                 <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" class="dropdown">

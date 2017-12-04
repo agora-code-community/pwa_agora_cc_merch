@@ -37,6 +37,18 @@ export class CartService {
   }
 
   /**
+   * Gets the itemCount of a user's cart
+   */
+  getCartCount() {
+    this.loadToken();
+    const headers = new Headers();
+    headers.append('Authorization', this.authToken);
+
+    return this.http.get('http://localhost:3000/api/cart/get-item-count', {headers: headers})
+      .map(res => res.json());
+  }
+
+  /**
    * Removes or reduces the quantity of an item in the cart
    * @param id is the id of the item being removed from the cart
    */

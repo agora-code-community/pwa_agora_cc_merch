@@ -35,6 +35,7 @@ import { ProductService } from './services/product.service';
 import { CategoryService } from './services/category.service';
 import { CartService } from './services/cart.service';
 import { ValidateService } from './services/validate.service';
+import { NavbarService } from './services/navbar.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
@@ -106,7 +107,7 @@ const appRoutes: Routes = [
     CartMoComponent, LoginComponent
   ],
   providers: [ProductService, CategoryService, CartService, AuthService, AuthGuard,
-    ValidateService
+    ValidateService, NavbarService
   ],
   bootstrap: [AppComponent]
 })
