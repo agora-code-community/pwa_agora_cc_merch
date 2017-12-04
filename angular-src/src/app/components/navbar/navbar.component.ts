@@ -72,28 +72,13 @@ export class NavbarComponent implements OnInit {
         return this.username;
     }
 
-    // getCartCount() {
-    //     let items;
-    //     this.cartService.showCart().subscribe(data => {
-    //         items = data.itemCount;
-    //     });
-
-    //     // if the user doesnt have anything in their cart
-    //     if (items > 0) {
-    //         this.cartItems = items;
-    //     } else {
-    //         this.cartItems = 0;
-    //     }
-    //     return this.cartItems;
-    // }
-
     /**
      * Logs the user out of the system
      */
     onLogout() {
         this.authService.logout();
         // flash logout msg
-        this.flashMessages.show('You have succefully logged out, later!', 
+        this.flashMessages.show('You have succefully logged out, later!',
             {cssClass: 'alert-success', timeout: 3000});
         // redirects to home
         this.router.navigate(['/']);
